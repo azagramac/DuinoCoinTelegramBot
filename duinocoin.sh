@@ -3,6 +3,7 @@
 TOKEN="YOUR_TOKEN"
 ID="YOUR_CHAT_ID"
 WALLET="YOUR_USERNAME_WALLET"
+
 URL="https://api.telegram.org/bot$TOKEN/sendMessage"
 MSG="ᕲ DuinoCoin"
 JSON=$(curl -s -X GET https://server.duinocoin.com/users/$WALLET -H "Accept: application/json" | jq .)
