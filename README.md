@@ -6,7 +6,7 @@ Create bot, and get token:
 Get chat ID:
 - https://t.me/myidbot
 
-Change, variable TOKEN, ID, WALLET.
+add the token, chat id and username of your wallet account
 
 Launch script
 `./duinocoin.sh`
