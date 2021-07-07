@@ -22,4 +22,7 @@ add the token, chat id and username of your wallet account
 
 `00 * * * *  /path/to/script/duinocoin.sh >/dev/null 2>&1`
 
+
+
+
 donate DUCO's: azagramac :coffee:
