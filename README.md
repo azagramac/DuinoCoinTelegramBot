@@ -8,6 +8,9 @@ Get chat ID:
 
 add the token, chat id and username of your wallet account
 
+Assign execution permissions
+`chmod a+x duinocoin.sh`
+
 Launch script
 `./duinocoin.sh`
 
