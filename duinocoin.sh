@@ -17,7 +17,7 @@ else
         /usr/bin/curl -s -X POST $URL \
 		-d chat_id=$ID \
 		-d parse_mode=HTML \
-		-d text="$(printf "$MSG\n\t\t- \U1FA99 Balance: <code>$BALANCE</code>\n\t\t- \U26CF Workers:<code>$WORKERS</code>")" \
+		-d text="$(printf "$MSG\n\t\t- \U1FA99 Balance: <code>$BALANCE</code>\n\t\t- \U26CF Workers:\n<code>$WORKERS</code>")" \
 		> /dev/null 2>&1
         exit 0
 fi
