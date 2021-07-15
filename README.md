@@ -6,7 +6,13 @@
 ### Get chat ID:
 - https://t.me/myidbot
 
-add the token, chat id and username of your wallet account
+Change in the script, the variables token, chat_id and the username of your duinocoin wallet.
+
+```
+TOKEN="YOUR_TOKEN"
+ID="YOUR_CHAT_ID"
+WALLET="YOUR_USERNAME_WALLET"
+```
 
 ### Install package
 `sudo apt install -y jq`
