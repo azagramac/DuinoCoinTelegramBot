@@ -6,7 +6,7 @@
 ### Get chat ID:
 - https://t.me/myidbot
 
-Change in the script, the variables token, chat_id and the username of your duinocoin wallet.
+Change in the script, the variables token, id and the username of your duinocoin wallet.
 
 ```
 TOKEN="YOUR_TOKEN_BOT"
