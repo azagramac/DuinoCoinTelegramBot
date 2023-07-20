@@ -1,6 +1,3 @@
-#### Sample
-<img src="https://github.com/AzagraMac/DuinoCoinTelegramBot/assets/571796/5885998e-5292-4863-abf4-931b938b6570" height="300" title="telegram"/>
-
 #### Create bot, and get token/chatID bot:
 - [![Telegram](https://img.shields.io/badge/-botfather-0088cc?style=flat&labelColor=0088cc&logo=telegram&logoColor=white)](https://t.me/botfather)
 - [![Telegram](https://img.shields.io/badge/-myidbot-0088cc?style=flat&labelColor=0088cc&logo=telegram&logoColor=white)](https://t.me/myidbot)
@@ -28,6 +25,9 @@ chmod a+x duinocoin.sh
 ```
 ./duinocoin.sh
 ```
+
+#### Sample
+<img src="https://github.com/AzagraMac/DuinoCoinTelegramBot/assets/571796/5885998e-5292-4863-abf4-931b938b6570" height="300" title="telegram"/>
 
 #### Add cron, in this example, it runs every hour, every day of the week.  
 ```
