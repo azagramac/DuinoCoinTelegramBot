@@ -54,3 +54,7 @@ crontab -e
 [![Keybase](https://img.shields.io/badge/-keybase-3663ea?style=flat&labelColor=ff6f21&logo=keybase&logoColor=white)](https://keybase.io/joselazagra)
 [![Youtube](https://img.shields.io/badge/-youtube-c4302b?style=flat&labelColor=c4302b&logo=youtube&logoColor=white)](https://www.youtube.com/@azagramac) 
 [![Flickr](https://img.shields.io/badge/-flickr-FF0084?style=flat&labelColor=0063dc&logo=flickr&logoColor=white)](https://www.flickr.com/photos/93901621@N07)
+
+🫂 Regards:
+
+[@revoxhere](https://github.com/revoxhere)👍
