@@ -29,7 +29,7 @@ chmod a+x duinocoin.sh
 #### Sample
 <img src="https://github.com/AzagraMac/DuinoCoinTelegramBot/assets/571796/5885998e-5292-4863-abf4-931b938b6570" height="300" title="telegram"/>
 
-#### Add cron, in this example, it runs every hour, every day of the week.  
+#### Add cron, in this example, it runs every hour, every day of the week.  (optional)
 ```
 crontab -e
 00 * * * *  /path/to/script/duinocoin.sh >/dev/null 2>&1
