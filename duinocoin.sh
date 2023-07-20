@@ -1,25 +1,44 @@
 #!/bin/bash
 
-TOKEN="YOUR_TOKEN_BOT"
-ID="YOUR_CHAT_ID"
-WALLET="YOUR_USERNAME_WALLET"
-URL="https://api.telegram.org/bot$TOKEN/sendMessage"
-MSG="ᕲ DuinoCoin"
-
-JSON=$(curl -s -X GET https://server.duinocoin.com/users/$WALLET -H "Accept: application/json" | jq .)
-BALANCE=$(echo $JSON | jq '.result.balance.balance')
-WORKERS=$(echo $JSON | jq '.result.miners' | jq '.[].identifier')
-NUMBER_WORKERS=$(echo $JSON | jq -r '.result.miners' | jq -r '.[].identifier' | wc -l)
-FORMAT1=$(echo "scale=2; $BALANCE/1" | bc -l)
-
+/bin/ping -c2 "1.1.1.1" > /dev/null 2>&1
 if [ $? -ne 0 ]
 then
-        exit 0
+	exit 1
 else
-        /usr/bin/curl -s -X POST $URL \
-                -d chat_id=$ID \
-                -d parse_mode=HTML \
-                -d text="$(printf "$MSG\n\t\t- \U1FA99 Balance: <code>$FORMAT1 ᕲ</code>\n\t\t- \U26CF Nº Workers $NUMBER_WORKERS:\n<code>$WORKERS</code>")" \
-                > /dev/null 2>&1
-        exit 0
+        unset $BALANCE
+        unset $WORKERS
+        unset $NUMBER_WORKERS
+        unset $BANNER
+
+	TOKEN="YOUR_TOKEN"
+	CHATID="YOUR_CHATID"
+	WALLET="YOUR_USER_WALLET"
+	
+	api_telegram="https://api.telegram.org/bot$TOKEN/sendMessage?parse_mode=HTML"
+	api_duinocoin=$(curl -s -X GET https://server.duinocoin.com/users/$WALLET -H "Accept: application/json" | jq .)
+
+	BALANCE=$(echo $api_duinocoin | jq '.result.balance.balance' | awk '{printf("%.0f \n",$1)}')
+	WORKERS=$(echo $api_duinocoin | jq '.result.miners' | jq '.[].identifier' | tr -d '"')
+	NUMBER_WORKERS=$(echo $api_duinocoin | jq -r '.result.miners' | jq -r '.[].identifier' | wc -l)
+	
+	w=0
+	
+	function sendMessage()
+	{
+		curl -s -X POST $api_telegram -d chat_id=$CHATID -d text="$(printf "<b>$BANNER</b>\n\n \
+			Balance: $BALANCE\n \
+			Nº Workers $NUMBER_WORKERS\n \
+			Names workers:\n<code>$WORKERS</code>")" > /dev/null 2>&1
+	}
+	
+	if [[ $NUMBER_WORKERS -gt $w ]]
+	then
+		BANNER="ᕲ DuinoCoin ✅"
+		sendMessage
+		exit 0
+	else
+		BANNER="ᕲ DuinoCoin ❌"
+		sendMessage
+		exit 1
+	fi
 fi
