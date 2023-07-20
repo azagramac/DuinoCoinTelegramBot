@@ -9,9 +9,9 @@
 Change in the script, the variables token, id and the username of your duinocoin wallet.
 
 ```
-	TOKEN="YOUR_TOKEN"
-	CHATID="YOUR_CHATID"
-	WALLET="YOUR_USER_WALLET"
+TOKEN="YOUR_TOKEN"
+CHATID="YOUR_CHATID"
+WALLET="YOUR_USER_WALLET"
 ```
 
 #### Install package
