@@ -1,44 +1,39 @@
 #!/bin/bash
 
-/bin/ping -c2 "1.1.1.1" > /dev/null 2>&1
-if [ $? -ne 0 ]
-then
-	exit 1
+/bin/ping -c2 "1.1.1.1" >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+    exit 1
 else
-        unset $BALANCE
-        unset $WORKERS
-        unset $NUMBER_WORKERS
-        unset $BANNER
+    unset $BALANCE
+    unset $WORKERS
+    unset $NUMBER_WORKERS
+    unset $BANNER
 
-	TOKEN="YOUR_TOKEN"
-	CHATID="YOUR_CHATID"
-	WALLET="YOUR_USER_WALLET"
-	
-	api_telegram="https://api.telegram.org/bot$TOKEN/sendMessage?parse_mode=HTML"
-	api_duinocoin=$(curl -s -X GET https://server.duinocoin.com/users/$WALLET -H "Accept: application/json" | jq .)
+    TOKEN="YOUR_TOKEN"
+    CHATID="YOUR_CHATID"
+    WALLET="YOUR_USER_WALLET"
 
-	BALANCE=$(echo $api_duinocoin | jq '.result.balance.balance' | awk '{printf("%.0f \n",$1)}')
-	WORKERS=$(echo $api_duinocoin | jq '.result.miners' | jq '.[].identifier' | tr -d '"')
-	NUMBER_WORKERS=$(echo $api_duinocoin | jq -r '.result.miners' | jq -r '.[].identifier' | wc -l)
-	
-	w=0
-	
-	function sendMessage()
-	{
-		curl -s -X POST $api_telegram -d chat_id=$CHATID -d text="$(printf "<b>$BANNER</b>\n\n \
+    api_telegram="https://api.telegram.org/bot$TOKEN/sendMessage?parse_mode=HTML"
+    api_duinocoin=$(curl -s -X GET https://server.duinocoin.com/users/$WALLET -H "Accept: application/json" | jq .)
+
+    BALANCE=$(echo $api_duinocoin | jq '.result.balance.balance' | awk '{printf("%.0f \n",$1)}')
+    WORKERS=$(echo $api_duinocoin | jq '.result.miners' | jq '.[].identifier' | tr -d '"')
+    NUMBER_WORKERS=$(echo $api_duinocoin | jq -r '.result.miners' | jq -r '.[].identifier' | wc -l)
+
+    function sendMessage() {
+        curl -s -X POST $api_telegram -d chat_id=$CHATID -d text="$(printf "<b>$BANNER</b>\n\n \
 			Balance: $BALANCE\n \
 			Nº Workers $NUMBER_WORKERS\n \
-			Names workers:\n<code>$WORKERS</code>")" > /dev/null 2>&1
-	}
-	
-	if [[ $NUMBER_WORKERS -gt $w ]]
-	then
-		BANNER="ᕲ DuinoCoin ✅"
-		sendMessage
-		exit 0
-	else
-		BANNER="ᕲ DuinoCoin ❌"
-		sendMessage
-		exit 1
-	fi
+			Names workers:\n<code>$WORKERS</code>")" >/dev/null 2>&1
+    }
+
+    if [ $NUMBER_WORKERS -ne 0 ]; then
+        BANNER="ᕲ DuinoCoin ✅"
+        sendMessage
+        exit 0
+    else
+        BANNER="ᕲ DuinoCoin ❌"
+        sendMessage
+        exit 1
+    fi
 fi
